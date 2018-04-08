@@ -24,10 +24,18 @@ import DrawerContent from './components/drawer/DrawerContent';
 
 //每个tab展示的页面（这里面试都一样）
 import TabView from './components/TabView';
+import Home from './components/tabs/home'
+import Custom from './components/tabs/custom'
+import  Order from './components/tabs/order'
+import Warning from './components/tabs/warning'
+import Device from './components/tabs/device'
+
+//icon
+// import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-//控制tab栏选中与不选中的字体颜色
-//import TabIcon from './components/TabIcon';
+//控制tab栏选中与不选中的图标颜色
+import TabIcon from './components/TabIcon';
 
 
 //点击这个icon展示侧边栏
@@ -61,11 +69,11 @@ const reducerCreate = params => {
   };
 };
 
-const getSceneStyle = () => ({
-    backgroundColor: '#F5FCFF',
-  shadowOpacity: 1,
-  shadowRadius: 3,
-});
+// const getSceneStyle = () => ({
+//     backgroundColor: '#F5FCFF',
+//   shadowOpacity: 1,
+//   shadowRadius: 3,
+// });
 
 // on Android, the URI prefix typically contains a host in addition to scheme
 const prefix = Platform.OS === 'android' ? 'mychat://mychat/' : 'mychat://';
@@ -90,9 +98,8 @@ const Example = () => (
             key="root"
             titleStyle={{ alignSelf: 'center' }}
           >
-            {/*<Scene key="echo" back clone component={EchoView} getTitle={({ navigation }) => navigation.state.key} />*/}
             <Scene key="launch" component={Launch} title="Launch" initial />
-            {/*侧边栏*/}
+            {/*侧边栏加tab标签*/}
             <Drawer
               hideNavBar
               key="drawer"
@@ -100,12 +107,7 @@ const Example = () => (
               drawerImage={MenuIcon}
               drawerWidth={300}
             >
-              {/*
-                Wrapper Scene needed to fix a bug where the tabs would
-                reload as a modal ontop of itself
-              */}
-              {/*<Scene hideNavBar panHandlers={null}>*/}
-              <Scene hideNavBar>
+              {/*<Scene hideNavBar  key="tabbar" name="tabbar" tabs={true}  initial={true} tabBarPosition = "bottom">*/}
                 {/*下面的选项卡*/}
                 <Tabs
                   key="tabbar"
@@ -113,61 +115,23 @@ const Example = () => (
                   showLabel={false}     //是否显示标签栏文字
                   tabBarStyle={styles.tabBarStyle}   //标签栏的样式
                   tabBarPosition = "bottom"      //标签栏位置
-                    //activeBackgroundColor="#3BB7FF"   //选中焦点的背景色
-                  //inactiveBackgroundColor="rgba(255, 0, 0, 0.5)"  //非焦点的选项卡背景色
                 >
 
-                  {/*第一个选项卡*/}
-                  <Stack key="tab_1" initial>
-                    <Scene key="tab_1_1" component={TabView} title="首页"
-                           icon={() => <View>
-                        <Image style={styles.iconstyle} source={require('./images/home.png')} />
-                        <Text>首页</Text>
-                    </View>} />
-                  </Stack>
-
-
-                    {/*第二个选项卡*/}
-                  <Stack key="tab_2">
-                      <Scene key="tab_2_1" component={TabView} title="客户"
-                             icon={() => <View>
-                                 <Image style={styles.iconstyle} source={require('./images/me.png')} />
-                                 <Text>客户</Text>
-                             </View>} />
-                  </Stack>
-
-                    {/*第三个选项卡*/}
-                    <Stack key="tab_3">
-                        <Scene key="tab_3_1" component={TabView} title="设备"
-                               icon={() => <View>
-                                   <Image style={styles.iconstyle} source={require('./images/important_devices.png')} />
-                                   <Text>设备</Text>
-                               </View>}/>
-                    </Stack>
-
-
-                    {/*第四个选项卡*/}
-                    <Stack key="tab_4">
-                      <Scene key="tab_4_1" component={TabView} title="告警"
-                             icon={() => <View>
-                                 <Image style={styles.iconstyle} source={require('./images/warning.png')} />
-                                 <Text>告警</Text>
-                             </View>}/>
-                    </Stack>
-
-
-                  {/*第五个选项卡*/}
-                  <Stack key="tab_5">
-                    <Scene key="tab_5_1" component={TabView} title="工单"  icon={() => <View>
-                        <Image style={styles.iconstyle} source={require('./images/order_form.png')} />
-                        <Text>工单</Text>
-                    </View>} />
-                  </Stack>
+                    <Scene key="home" component={Home} title="首页" name="home" icon={TabIcon}
+                    />
+                      <Scene key="custom" component={Custom} title="客户" name="user-o" icon={TabIcon}
+                      />
+                        <Scene key="device" component={Device} title="设备" name="television" icon={TabIcon}
+                        />
+                      <Scene key="warning" component={Warning} title="告警" name="warning" icon={TabIcon}
+                      />
+                    <Scene key="order" component={Order} title="工单"  name="sticky-note-o" icon={TabIcon}
+                    />
 
 
                 </Tabs>
 
-              </Scene>
+              {/*</Scene>*/}
             </Drawer>
           </Stack>
         </Lightbox>

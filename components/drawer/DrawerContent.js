@@ -10,8 +10,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent',
-    borderWidth: 2,
-    borderColor: 'red',
   },
 });
 
