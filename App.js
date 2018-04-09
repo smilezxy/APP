@@ -6,7 +6,7 @@ import {
   View,
     Image
 } from 'react-native';
-import Launch from './components/Launch';
+import Login from './components/Login';
 import {
   Scene,
   Router,
@@ -98,7 +98,7 @@ const Example = () => (
             key="root"
             titleStyle={{ alignSelf: 'center' }}
           >
-            <Scene key="launch" component={Launch} title="Launch" initial />
+            <Scene key="login" component={Login} title="Login" initial />
             {/*侧边栏加tab标签*/}
             <Drawer
               hideNavBar

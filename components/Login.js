@@ -11,17 +11,25 @@ import {
     TouchableHighlight
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-
-
-
+import {appFutureImpl} from '../future.js'
 
 //初始化类
-export default class Launch extends Component {
+export default class Login extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            username:"",
+            password:""
+        }
 
     }
+    onChangeName = (inputData) => {
+        this.setState({username:inputData});
+    }
+    onChangePassword = (inputData) => {
+        this.setState({password:inputData});
+    }
+
     render() {
         return <View style={styles.container}>
 
@@ -34,13 +42,13 @@ export default class Launch extends Component {
             </View>
 
             <View style={styles.inputview}>
-                <TextInput style = {styles.textinput} placeholder='账号' underlinecolorandroid='transparent'/>
+                <TextInput style = {styles.textinput} placeholder='账号' underlinecolorandroid='transparent' onChangeText={this.onChangeName}/>
                 {/*<View style={styles.dividerview}><Text style={styles.divider}></Text></View>*/}
-                <TextInput style = {styles.textinput} placeholder='密码' secureTextEntry ={true} underlinecolorandroid='transparent'/>
+                <TextInput style = {styles.textinput} placeholder='密码' secureTextEntry ={true} underlinecolorandroid='transparent' onChangeText={this.onChangePassword}/>
             </View>
 
             <View style={styles.boxview}>
-                <TouchableHighlight underlayColor="#fff" onPress={Actions.drawer}>
+                <TouchableHighlight underlayColor="#fff" onPress={() => {appFutureImpl.goLogin(this.state.username,this.state.password)}}>
                     <View style={styles.buttonview}>
                         <Text style={styles.logintext}>登录</Text>
                     </View>
