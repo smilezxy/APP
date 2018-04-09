@@ -1,3 +1,4 @@
+//封装的请求API方法  不支持跨域  跨域要用fetch-jsonp
 import React, { Component } from 'react';
 import {
     AppRegistry,
